@@ -35,10 +35,21 @@ func main() {
 	sort.Ints(groupedCaloriesArray)
 
 	fmt.Printf("The elf carrying most calories is carrying %d! \n", groupedCaloriesArray[len(groupedCaloriesArray)-1])
+
+	topThreeElvesCalorieCount := groupedCaloriesArray[len(groupedCaloriesArray)-3:]
+	fmt.Printf("The top three elves carry a total ammount of %d calories! \n", SliceSum(topThreeElvesCalorieCount))
 }
 
 func ReadFile(fileName string) (string, error) {
 	fileContent, err := os.ReadFile(fileName)
 
 	return string(fileContent), err
+}
+
+func SliceSum(sliceToSum []int) (total int) {
+	for _, number := range sliceToSum {
+		fmt.Println(number)
+		total += number
+	}
+	return
 }
