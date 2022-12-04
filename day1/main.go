@@ -48,7 +48,6 @@ func ReadFile(fileName string) (string, error) {
 
 func SliceSum(sliceToSum []int) (total int) {
 	for _, number := range sliceToSum {
-		fmt.Println(number)
 		total += number
 	}
 	return
