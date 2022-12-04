@@ -20,7 +20,7 @@ func NewHand(handCode byte) (*Hand, error) {
 
 }
 
-func (h *Hand) Cmp(other *Hand) (cmpCode string) {
+func (h *Hand) Play(other *Hand) (cmpCode string) {
 	if h.Gesture == other.Gesture {
 		cmpCode = "Tie"
 	}

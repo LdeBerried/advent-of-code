@@ -39,7 +39,7 @@ func TestMultipleGames(t *testing.T) {
 			t.Error(err)
 		}
 
-		gameResult := ownHand.Cmp(otherHand)
+		gameResult := ownHand.Play(otherHand)
 		if gameResult != test.expectedResult {
 			t.Errorf("Expected %s at game, got %s", test.expectedResult, gameResult)
 		}
