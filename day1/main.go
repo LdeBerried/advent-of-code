@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"github.com/LdeBerried/advent-of-code/internal/readfile"
 	"sort"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	inputContent, err := ReadFile("day1/input.txt")
+	inputContent, err := readfile.ReadFile("day1/input.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -38,12 +38,6 @@ func main() {
 
 	topThreeElvesCalorieCount := groupedCaloriesArray[len(groupedCaloriesArray)-3:]
 	fmt.Printf("The top three elves carry a total ammount of %d calories! \n", SliceSum(topThreeElvesCalorieCount))
-}
-
-func ReadFile(fileName string) (string, error) {
-	fileContent, err := os.ReadFile(fileName)
-
-	return string(fileContent), err
 }
 
 func SliceSum(sliceToSum []int) (total int) {
