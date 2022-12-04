@@ -20,6 +20,24 @@ func NewHand(handCode byte) (*Hand, error) {
 
 }
 
+func NewHandByGameResult(opponentHand *Hand, gameResultCode byte) (*Hand, error) {
+	if (opponentHand.Gesture == "Rock" && gameResultCode == 'Z') ||
+		(opponentHand.Gesture == "Scissors" && gameResultCode == 'X') ||
+		(opponentHand.Gesture == "Paper" && gameResultCode == 'Y') {
+		return NewHand('B')
+	} else if (opponentHand.Gesture == "Rock" && gameResultCode == 'X') ||
+		(opponentHand.Gesture == "Scissors" && gameResultCode == 'Y') ||
+		(opponentHand.Gesture == "Paper" && gameResultCode == 'Z') {
+		return NewHand('C')
+	} else if (opponentHand.Gesture == "Rock" && gameResultCode == 'Y') ||
+		(opponentHand.Gesture == "Scissors" && gameResultCode == 'Z') ||
+		(opponentHand.Gesture == "Paper" && gameResultCode == 'X') {
+		return NewHand('A')
+	}
+
+	return NewHand(' ')
+
+}
 func (h *Hand) Play(other *Hand) (cmpCode string) {
 	if h.Gesture == other.Gesture {
 		cmpCode = "Tie"

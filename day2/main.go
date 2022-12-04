@@ -16,6 +16,7 @@ func main() {
 	rawGamesArray := strings.Split(inputContent, "\n")
 	ownPoints := 0
 
+	//First part
 	for _, game := range rawGamesArray {
 		gameBytes := []byte(game)
 
@@ -32,5 +33,26 @@ func main() {
 		ownPoints = ownPoints + ownHand.GetGamePoints(gameResult)
 	}
 
-	fmt.Printf("Expected points for me: %d", ownPoints)
+	fmt.Printf("Expected points for me: %d\n", ownPoints)
+
+	//Second Part
+	trueOwnPoints := 0
+	for _, game := range rawGamesArray {
+		gameBytes := []byte(game)
+
+		otherHand, err := hand.NewHand(gameBytes[0])
+		if err != nil {
+			panic(err)
+		}
+		ownHand, err := hand.NewHandByGameResult(otherHand, gameBytes[2])
+		if err != nil {
+			panic(err)
+		}
+
+		gameResult := ownHand.Play(otherHand)
+		trueOwnPoints = trueOwnPoints + ownHand.GetGamePoints(gameResult)
+	}
+
+	fmt.Printf("Expected true points for me: %d\n", trueOwnPoints)
+
 }
