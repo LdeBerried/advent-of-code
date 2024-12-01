@@ -30,10 +30,22 @@ def get_location_distance_from_lists(first_location_list: list[int], second_loca
     return location_distance
 
 
+def get_similarity_score(first_location_list: list[int], second_location_list: list[int]) -> int:
+    similarity_score = 0
+    for first_location in first_location_list:
+        second_list_matches = [match for match in second_location_list if match == first_location]
+        if len(second_list_matches) > 0:
+            similarity_score += first_location * len(second_list_matches)
+    return similarity_score
+
+
 def main():
     first_location_list, second_location_list = get_locations()
-    location_distances = get_location_distance_from_lists(first_location_list, second_location_list)
-    print(location_distances)
+    location_distance = get_location_distance_from_lists(first_location_list, second_location_list)
+    print(f"Location distance between both lists is: {location_distance}")
+
+    similarity_score = get_similarity_score(first_location_list, second_location_list)
+    print(f"Similarity score between both lists is: {similarity_score}")
 
 
 if __name__ == "__main__":
